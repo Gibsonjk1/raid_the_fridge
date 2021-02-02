@@ -154,8 +154,7 @@ def add_user_to_g():
 def show_ideas():
     response = requests.get('https://api.spoonacular.com/recipes/random?apiKey=89bd16ac21f5418391542303788e144d&number=10')
     json_output = json.loads(response.text)
-    ideas = json_output
-    return render_template('ideas.html', ideas=ideas)
+    return render_template('ideas.html', ideas=json_output)
 
 @app.route('/save', methods=['POST'])
 def save_recipe():
@@ -169,4 +168,12 @@ def save_recipe():
 
     return redirect('/my_recipes')
 
+@app.route('/delete', methods=['POST'])
+def delete_food():
+    food = request.form['id']
+    delete_id = Customer_Recipe.query.filter_by(recipe_id = food).delete()
+
+    db.session.commit()
+
+    return redirect('/my_recipes')
 

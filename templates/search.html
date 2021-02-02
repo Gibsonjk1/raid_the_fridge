@@ -6,9 +6,9 @@
 <div>
     <nav class="d-flex justify-content-center">
         <ul>
-            <li class="link"><a href="/search" class="active">Search</a></li>
-            <li class="link"><a href="/my_recipes">My Recipes</a></li>
-            <li class="link"><a href="/ideas">Get Fresh Ideas</a></li>
+            <li class="link active"><a href="/search" >Search</a></li>
+            <li class="link inactive"><a href="/my_recipes">My Recipes</a></li>
+            <li class="link inactive"><a href="/ideas">Get Fresh Ideas</a></li>
         </ul>
     </nav>
     <br>
@@ -30,17 +30,7 @@
     <button>Save to My Recipes</button>
 </form>
 <br>
-<div class="d-flex justify-content-center">
-<ol class="flex-column">
-{%for y in range(0, json_output[x].missedIngredients|length)%}
-<li>{{json_output[x].missedIngredients[y].original}}</li>
-{%endfor%}
-{%for i in range(0, json_output[x].usedIngredients|length)%}
-<li>{{json_output[x].usedIngredients[i].original}}</li>
-{%endfor%}
-</ol>
-</div>
-<br>
+<hr>
 {%endfor%}
 
 {%endblock%}
