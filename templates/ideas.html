@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+
+{%block title%} What's in the Fridge {%endblock%}
+
+{%block content%}
+<div>
+    <nav class="d-flex justify-content-center">
+        <ul>
+            <li class="link"><a href="/search">Search</a></li>
+            <li class="link"><a href="/my_recipes">My Recipes</a></li>
+            <li class="link"><a href="/ideas" class="active">Get Fresh Ideas</a></li>
+        </ul>
+    </nav>
+</div>
+<br>
+<ol>
+{%for x in range(0,10)%}
+
+    <li class="d-flex flex-column justify-content-center">
+        <h2 class="d-flex justify-content-center">{{ideas.recipes[x].title}}</h2>
+    <br>
+    <div class="d-flex justify-content-center">
+        <img src="{{ideas.recipes[x].image}}" alt="recipe {{x+1}} image">
+    </div>
+    <br>
+    <form action="/save" method="POST" class="d-flex justify-content-center">
+        <input type="hidden" name="id" value="{{ideas.recipes[x].id}}">
+        <button>Save to My Recipes</button>
+    </form>
+    <br>
+    <ol style='margin-right: auto; margin-left: auto;'>
+        {%for y in range(0, ideas.recipes[x].extendedIngredients|length)%}
+  <li>{{ideas.recipes[x].extendedIngredients[y].original}}</li>
+  {%endfor%}
+</ol>
+<br>
+<p style="margin-left: 20%; margin-right: 20%;">{{ideas.recipes[x].instructions|safe}}</p>
+</li>
+<hr>
+<br>
+{%endfor%}
+</ol>
+
+
+{%endblock%}

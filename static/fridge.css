@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+  
+.link a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+  
+  /* Change the link color on hover */
+  .link a:hover {
+    background-color: #555;
+    color: white;
+  }
+
+  .link {
+    float: left;
+    text-align: center;
+    border-right: 1px solid #bbb;
+  }
+  
+  .link:last-child {
+    border-right: none;
+  }
+
+  .active{
+    background-color: green;
+  }
+
+  ol {
+    list-style-type: none;
+  }
+
+  #search{
+    width: 80%;
+
+  }
+  
+  .flashes{
+    background-color: white;
+    color: green;
+  }

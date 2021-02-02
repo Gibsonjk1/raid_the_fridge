@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%block title%} What's in the Fridge {%endblock%}
+
+{%block content%}
+<div>
+    <nav class="d-flex justify-content-center">
+        <ul>
+            <li class="link"><a href="/search" class="active">Search</a></li>
+            <li class="link"><a href="/my_recipes">My Recipes</a></li>
+            <li class="link"><a href="/ideas">Get Fresh Ideas</a></li>
+        </ul>
+    </nav>
+    <br>
+    <p class="d-flex justify-content-center">Search for the food that you already have. Seperate values with a comma.</p>
+</div>
+<form action="/search" method="POST" class="d-flex justify-content-center">
+    Search:
+    <input type="text" name="ingredients" id="search">
+    <button class="fas fa-search"></button>
+</form>
+
+{%for x in range(0, json_output|length)%}
+    <h2 class="d-flex justify-content-center">{{json_output[x].title}}</h2>
+<div class="d-flex justify-content-center">
+    <img src="{{json_output[x].image}}" alt="recipe {{x}} image">
+</div>
+<form action="/save" method="POST" class="d-flex justify-content-center">
+    <input type="hidden" name="id" value="{{json_output[x].id}}">
+    <button>Save to My Recipes</button>
+</form>
+<br>
+<div class="d-flex justify-content-center">
+<ol class="flex-column">
+{%for y in range(0, json_output[x].missedIngredients|length)%}
+<li>{{json_output[x].missedIngredients[y].original}}</li>
+{%endfor%}
+{%for i in range(0, json_output[x].usedIngredients|length)%}
+<li>{{json_output[x].usedIngredients[i].original}}</li>
+{%endfor%}
+</ol>
+</div>
+<br>
+{%endfor%}
+
+{%endblock%}

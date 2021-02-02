@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+{%block title%} What's in the Fridge {%endblock%}
+
+{%block content%}
+<div>
+    <nav class="d-flex justify-content-center">
+        <ul>
+            <li class="link"><a href="/search" >Search</a></li>
+            <li class="link"><a href="/my_recipes" class="active">My Recipes</a></li>
+            <li class="link"><a href="/ideas">Get Fresh Ideas</a></li>
+        </ul>
+    </nav>
+</div>
+
+{%for x in range(0,recipes|length)%}
+<h2 class="d-flex justify-content-center">{{recipes[x].title}}</h2>
+<div class="d-flex justify-content-center">
+<img src="{{recipes[x].image}}" alt="{{recipes[x].title}} image">
+</div>
+<div class="d-flex justify-content-center">
+<ul class="flex-column">
+
+{%for y in range(0,recipes[x].extendedIngredients|length)%}
+
+<li style="background-color: white;">{{recipes[x].extendedIngredients[y].original}}</li>
+
+{%endfor%}
+</ul>
+</div>
+<div class="d-flex justify-content-center">
+<p>{{recipes[x].instructions|safe}}</p>
+</div>
+<hr>
+{%- endfor%}
+
+{%endblock%}
